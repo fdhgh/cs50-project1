@@ -1,17 +1,22 @@
-import csv
 import os
 
 from flask import Flask, render_template, request
 from models import *
 
-# Check for environment variable
-if not os.getenv("DATABASE_URL"):
-	raise RuntimeError("DATABASE_URL is not set")
+app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+db.init_app(app)
 
-print(os.getenv("DATABASE_URL"))
-#     f = open("books.csv")
-#     reader = csv.reader(f)
-#     next(reader, None)  # skip the headers
-#     # for isbn, title, bookAuthor, year in reader:
-#     #
-#     #     print(f"Added book with isbn {isbn} named {title} by {bookAuthor} published {year}.")
+def main():
+	authors = Author.query.all()
+
+	authorName = "Jane Greeno"
+	authorid = [x.id for x in authors if x.name == authorName]
+	if not authorId:
+		print('no author id')
+	else: print(authorid[0])
+
+if __name__ == "__main__":
+	with app.app_context():
+		main()

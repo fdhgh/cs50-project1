@@ -15,32 +15,33 @@ db.init_app(app)
 
 def getExistingAuthor(authorName):
     existingAuthor = Author.query.filter_by(name=authorName).limit(1).all()
-    if existingAuthor is None:
-        print('doing things')
-    else: print(existingAuthor)
     return existingAuthor
 
 def main():
     f = open("books.csv")
     reader = csv.reader(f)
     next(reader, None)  # skip the headers
+    bookData = list(reader)
 
     ## import authors
-    for isbn, title, authorName, year in reader:
+    for isbn, title, authorName, year in bookData:
         existingAuthor = getExistingAuthor(authorName)
-        if existingAuthor is None:
+        if not existingAuthor:
             newAuthor = Author(name=authorName) # add new author
             db.session.add(newAuthor)
             print(f"Added author {authorName}.")
+        # else:
+        #     print(f"Author {authorName} already exists")
     db.session.commit() # commit authors
 
+    authors = Author.query.all()
     ## import books
-    for isbn, title, authorName, year in reader:
-        existingAuthor = getExistingAuthor(authorName)
-        if existingAuthor is None:
+    for isbn, title, authorName, year in bookData:
+        existingAuthor = [a.id for a in authors if a.name == authorName]
+        if not existingAuthor:
             raise RuntimeError("Author not imported") # author does not exist error
         else:
-            authorid = existingAuthor.id
+            authorid = existingAuthor[0]
         book = Book(isbn=isbn,title=title,authorid=authorid,year=year)
         db.session.add(book)
         print(f"Added book with isbn {isbn} named {title} by {authorName} published {year}.")
