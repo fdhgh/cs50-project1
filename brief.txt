@@ -1,0 +1,32 @@
+DATABASE TABLES:
+users
+- id (p key)
+- username
+- password
+
+books
+- id (p key)
+- isbn
+- title
+- authorid
+- year
+
+authors
+- id (p key)
+- name
+
+reviews
+- id
+- bookid
+- userid
+- rating (1-5)
+- content (text)
+
+SITE PAGES:
+- login
+- search
+	- view results of current search
+	- search for a book
+- book page
+	- details about the book: its title, author, publication year, ISBN number, and any reviews that users have left for the book on your website
+	- goodreads avg rating and number of ratings
