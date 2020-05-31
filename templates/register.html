@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block body %}
+
+  <!-- Default form register -->
+  <form class="text-center" action="{{ url_for('register') }}" method="post">
+
+      <p class="h4 mb-4">Sign up</p>
+      {{ message }}
+
+      <!-- E-mail -->
+      <input type="text" id="registerUsername" class="form-control mb-4" name="registerUsername" placeholder="Username">
+
+      <!-- Password -->
+      <input type="password" id="registerPassword" class="form-control" name="registerPassword" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+
+      <!-- Sign up button -->
+      <button class="btn btn-info my-4 btn-block" type="submit">Register</button>
+
+      <!-- Login -->
+      <p>Already registered?
+          <a href="{{ url_for('login') }}">Login</a>
+      </p>
+
+  </form>
+  <!-- Default form register -->
+{% endblock %}

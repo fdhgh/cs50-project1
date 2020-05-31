@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Book Portal: {% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+            </div>
+            <div class="col-6">
+              <h1 class="text-center">Book Portal</h1>
+            </div>
+            <div class="col-sm">
+              <b><a href = "{{ url_for('logout') }}">Logout</a></b>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <hr>
+            </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+            </div>
+            <div class="col-6">
+              {% block body %}
+              {% endblock %}
+            </div>
+            <div class="col-sm">
+            </div>
+          </div>
+        </div>
+    </body>
+</html>

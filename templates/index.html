@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Login/Register
+{% endblock %}
+
+{% block body %}
+
+    <!-- Default form login -->
+    <form class="text-center" action="{{ url_for('login') }}" method="post">
+
+        <p class="h4 mb-4">Sign in</p>
+        {{ message }}
+
+        <!-- Username -->
+        <input type="text" id="loginUsername" class="form-control mb-4" name="loginUsername" placeholder="Username">
+
+        <!-- Password -->
+        <input type="password" id="loginPassword" class="form-control mb-4" name="loginPassword" placeholder="Password">
+
+        <!-- Sign in button -->
+        <button class="btn btn-info btn-block my-4" type="submit">Login</button>
+
+        <!-- Register -->
+        <p>Not registered?
+            <a href="{{ url_for('register') }}">Register</a>
+        </p>
+
+    </form>
+    <!-- Default form login -->
+{% endblock %}

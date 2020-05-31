@@ -24,9 +24,21 @@ reviews
 
 SITE PAGES:
 - login
+	- u and p fields
+	- registration fields: u, p1, p2
 - search
 	- view results of current search
 	- search for a book
 - book page
 	- details about the book: its title, author, publication year, ISBN number, and any reviews that users have left for the book on your website
 	- goodreads avg rating and number of ratings
+
+
+REQUESTS
+- register post
+- login post
+- logout post
+- search book get
+- reviews get
+- review post
+- isbn get
