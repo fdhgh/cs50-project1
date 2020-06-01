@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Book details
+{% endblock %}
+
+{% block body %}
+    <!-- Search form -->
+    <form action="{{ url_for('search') }}" method="post">
+
+        <p class="h4 mb-4">Search books</p>
+
+        <!-- Book search box -->
+        <input type="text" id="bookSearchTerm" class="form-control mb-4" name="bookSearchTerm" placeholder="Search by ISBN, title, or author">
+
+        <!-- Submit button -->
+        <button class="btn btn-info btn-block my-4" type="submit">Search</button>
+
+    </form>
+    <!-- Search form -->
+
+    <p class="h4 mb-4">{{book.title}} by {{author.name}}</p>
+    <ul>
+      <li>
+        <p>Published in {{book.year}}</p>
+      </li>
+      <li>
+        <p>ISBN: {{book.isbn}}</p>
+      </li>
+    </ul>
+    <p class="h6 mb-4 text-danger">{{ message }}</p>
+    <p class="h5 mb-4">User reviews for {{book.title}}</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">User</th>
+          <th scope="col">Review</th>
+          <th scope="col">Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for review in reviews %}
+        <tr>
+          <td>{{review.appuserid}}</td>
+          <td>{{review.content}}</td>
+          <td>{{review.rating}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <!-- Review form -->
+    <form action="{{ url_for('review', book_id=book.id) }}" method="post">
+
+        <p class="h4 mb-4">Search books</p>
+
+        <!-- Review text box -->
+        <div>
+          <input type="text" id="reviewContent" class="form-control mb-4" name="reviewContent" placeholder="Enter a review">
+        </div>
+        <!-- Rating box -->
+        <div class="form-group">
+          <label for="reviewRating">Rating</label>
+          <select class="form-control" id="reviewRating" name="reviewRating">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        <!-- Submit button -->
+        <div>
+          <button class="btn btn-info btn-block my-4" type="submit">Submit</button>
+        </div>
+    </form>
+    <!-- Review form -->
+
+
+
+
+{% endblock %}
