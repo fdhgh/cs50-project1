@@ -6,11 +6,12 @@
 
 {% block body %}
 
-    <p class="h4 mb-4 text-center">{{ message }}</p>
+    <p class="h4 mb-4">Error</p>
+    <p class="h7 mb-4">{{ message }}</p>
 
     <br>
 
-    <p class="h7 mb-4 text-center"><a href="{{ url_for('search') }}">Back to search</a></p>
+    <p class="h7 mb-4 text-center"><a href="{{ prevPage }}">Return to {{returnToPage}}</a></p>
 
 
 

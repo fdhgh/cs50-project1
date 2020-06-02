@@ -27,32 +27,44 @@
       <li>
         <p>ISBN: {{book.isbn}}</p>
       </li>
+      <li>
+        <p> Number of Goodreads ratings: {{ ratings_count }}</p>
+      </li>
+      <li>
+        <p> Average Goodreads rating: {{ avg_rating }}</p>
+      </li>
     </ul>
-    <p class="h6 mb-4 text-danger">{{ message }}</p>
-    <p class="h5 mb-4">User reviews for {{book.title}}</p>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">User</th>
-          <th scope="col">Review</th>
-          <th scope="col">Rating</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for review in reviews %}
-        <tr>
-          <td>{{review.appuserid}}</td>
-          <td>{{review.content}}</td>
-          <td>{{review.rating}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+
+    <p class="h6 mb-4">{{ message }}</p>
+
+    {% if reviews[0] is not defined %}
+      <p class="h5 mb-4">No user reviews for {{book.title}}</p>
+    {% else %}
+      <p class="h5 mb-4">User reviews for {{book.title}}</p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">User</th>
+            <th scope="col">Review</th>
+            <th scope="col">Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for review in reviews %}
+          <tr>
+            <td>{{review.username}}</td>
+            <td>{{review.content}}</td>
+            <td>{{review.rating}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
 
     <!-- Review form -->
     <form action="{{ url_for('review', book_id=book.id) }}" method="post">
 
-        <p class="h4 mb-4">Search books</p>
+        <p class="h5 mb-4">Leave a review</p>
 
         <!-- Review text box -->
         <div>
@@ -62,11 +74,11 @@
         <div class="form-group">
           <label for="reviewRating">Rating</label>
           <select class="form-control" id="reviewRating" name="reviewRating">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
             <option>5</option>
+            <option>4</option>
+            <option>3</option>
+            <option>2</option>
+            <option>1</option>
           </select>
         </div>
         <!-- Submit button -->
@@ -75,8 +87,5 @@
         </div>
     </form>
     <!-- Review form -->
-
-
-
 
 {% endblock %}

@@ -10,6 +10,11 @@ class Book(db.Model):
     authorid = db.Column(db.Integer, db.ForeignKey("author.id"), nullable=False)
     year = db.Column(db.Integer, nullable=False)
 
+    def add_review(self, appuserid, rating, content ):
+        r = Review(bookid=self.id, appuserid=appuserid, rating=rating, content=content)
+        db.session.add(r)
+        db.session.commit()
+
 class Author(db.Model):
     __tablename__ = "author"
     id = db.Column(db.Integer, primary_key=True)
