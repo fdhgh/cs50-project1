@@ -15,6 +15,6 @@ Book reviews website designed to meet the following requirements:
 * API Access: If users make a GET request to the website’s /api/<isbn> route, where <isbn> is an ISBN number, your website should return a JSON response containing the book’s title, author, publication date, ISBN number, review count, and average score.
 
 Future improvements:
-* General UX such as Javascript enhancements, modernised components, stronger branding
+* General UX such as Javascript enhancements, modernised components, stronger branding, and accessibility
 * Further Goodreads integration such as submitting a Goodreads review/rating from the web application
 * Security - upgrading the framework (for example, to Django) could provide better built-in security features. The current version may be susceptible to basic attacks such as XSS.
